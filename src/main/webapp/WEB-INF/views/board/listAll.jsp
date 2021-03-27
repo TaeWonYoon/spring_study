@@ -11,6 +11,7 @@
 <form action = "regist" method = "get">
 
 <body>
+<h1>List page</h1>
 <table border="1" width="880">
 <tr>
         <td width="77">
@@ -32,7 +33,7 @@
         <c:forEach items="${list}" var="boardVO">
 	<tr>
         <td>${boardVO.bno}</td>
-        <td><a href='/read?bno=${boardVO.bno}'>${boardVO.title}</a></td>
+        <td><a href='./read?bno=${boardVO.bno}'>${boardVO.title}</a></td>
         <td>${boardVO.user_id}</td>
         <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 				value="${boardVO.regdate}" /></td>
@@ -40,7 +41,7 @@
 	</tr>
 		</c:forEach>
     </table>
-     <button type ="submit">글쓰기</button>
+     <a href ="${pageContext.request.contextPath}/board/write">글쓰기</button>
    </body>
     </form>
 </html>

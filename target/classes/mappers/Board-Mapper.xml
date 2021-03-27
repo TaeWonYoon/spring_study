@@ -21,6 +21,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 order by bno desc
 	 ]]>  
  	</select>
+ 	
+ 	 <select id="read" resultType="com.study.tw.vo.BoardVO">
+	 select 
+	   bno, title, content, user_id, regdate, viewcnt 
+	 from 
+	   board 
+	 where bno = #{bno}
+	 </select>
+
 
 <!-- 
 	<select id="read" resultType="com.myp.domain.BoardVO">

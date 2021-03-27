@@ -24,9 +24,6 @@ import com.study.tw.vo.BoardVO;
 @Controller
 public class HomeController {
 	
-	@Autowired
-	private BoardService service; 
-	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**
@@ -43,21 +40,24 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "home.page";
 	}
 	
-	@RequestMapping(value = "/write.do", method = RequestMethod.POST)
-	public String writeDo(BoardVO vo) throws Exception {
-		service.create(vo);
-	
-		return "redirect:/";
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String home2(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		
+		return "home.page";
 	}
 	
-	@RequestMapping(value= "/listAll")
-	public String listAll(Model model)throws Exception { 
-		model.addAttribute("list",service.listAll()); 
-		return "listAll";
-	}
+	
 	
 	
 	

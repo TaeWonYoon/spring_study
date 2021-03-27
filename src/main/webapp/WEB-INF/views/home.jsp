@@ -7,17 +7,12 @@
 </head>
 <body>
 <h1>
-	Hello world!  
+	study  
 </h1>
-
-<P>  The time on the server is ${serverTime}. </P>
-
-<form method="post" action="./write.do">
-	title : <input name="title" > <br />
-	cotent : <input name="content"> <br />
-	id : <input name="user_id"> <br />
-<!-- 	<input type="hidden" name="viewcnt" value="0" /> -->
-	<input type="submit" value="전송" />
-</form>
+<p>이름은 ${member.username}환영합니다</p>
+<a href="${pageContext.request.contextPath}/auth/register">회원가입</a>
+<a href="${pageContext.request.contextPath}/auth/login">로그인</a>
+<a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a>
+<a href="${pageContext.request.contextPath}/board/listAll">listpage</a>
 </body>
 </html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserMapper">
+
+	<insert id="register">
+		insert into member (userid, userpass, username, email, birthday)
+		values( #{userid}, #{userpass}, #{username}, #{email}, #{birthday} )
+	</insert>
+	
+	<select id="login" resultType="com.study.tw.vo.MemberVO">
+		select userid, userpass, username
+		from member
+		where userid = #{userid} and userpass = #{userpass} 
+	</select>
+	
+	<select id="idChk" resultType="int">
+		select count(*) from member
+		where userid = #{userid}
+	</select>
+
+</mapper>

@@ -34,4 +34,5 @@ public class BoardDAOImpl implements BoardDAO{
 		// TODO Auto-generated method stub
 		return session.selectList(namespace+".listAll");
 	}
+	
 }
