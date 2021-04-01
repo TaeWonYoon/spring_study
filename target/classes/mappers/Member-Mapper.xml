@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="UserMapper">
 
 	<insert id="register">
-		insert into member (userid, userpass, username, email, birthday)
-		values( #{userid}, #{userpass}, #{username}, #{email}, #{birthday} )
+		insert into member (userid, userpass, username, email, birthday, level, tel)
+		values( #{userid}, #{userpass}, #{username}, #{email}, #{birthday}, 1, #{tel});
 	</insert>
 	
 	<select id="login" resultType="com.study.tw.vo.MemberVO">

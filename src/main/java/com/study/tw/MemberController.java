@@ -29,8 +29,6 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");
 		String url;
-		System.out.println(member);
-		System.out.println("registerpage");
 		if(member != null) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -46,25 +44,28 @@ public class MemberController {
 	@RequestMapping(value = "/register.do", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo) throws Exception {
 		service.register(vo);
+		System.out.println(vo.getTel());
 		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/login")
 	public String login(MemberVO vo) throws Exception {
-		return "/auth/login";
+		return "/auth/login.page";
 	}
 	
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String loginDo(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
-		
+		System.out.println("1번째"+vo.getUserid());
+		System.out.println("2번째"+vo.getUserpass());
 		HttpSession session = req.getSession();
 		MemberVO login = service.login(vo);
-		
+		System.out.println("3번째" + login);
 		if(login == null) {
 			session.setAttribute("member", null);
 			rttr.addFlashAttribute("msg", false);
 		}else {
 			session.setAttribute("member", login);
+			//System.out.println("1번쨰"+login.getUsername());
 		}
 		System.out.println("로그인성공");
 		return "redirect:/";

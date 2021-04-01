@@ -10,6 +10,8 @@ public class MemberVO {
 	private String email;
 	private Date regdate;
 	private String birthday;
+	private int level;
+	private String tel;
 	
 	public MemberVO() {
 	}
@@ -52,8 +54,22 @@ public class MemberVO {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-	
-	
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	
 	
 }
