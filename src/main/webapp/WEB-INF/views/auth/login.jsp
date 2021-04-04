@@ -8,8 +8,8 @@
 </head>
 <body>
 
-	<div class="m-5">
-		<div style='width: 700px; margin: 0 auto;'>
+	<div class="m-5"><br><br>
+		<div style='width: 800px; margin: 0 auto; padding: 50px;border:2px solid black; border-radius: 20px;'>
 			<form name='homeForm' method="post" action="${pageContext.request.contextPath}/auth/login.do">
 				<c:if test="${member == null}">
 					<h2 class="form-signin-heading">Please sign in</h2>

@@ -55,19 +55,16 @@ public class MemberController {
 	
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String loginDo(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
-		System.out.println("1번째"+vo.getUserid());
-		System.out.println("2번째"+vo.getUserpass());
 		HttpSession session = req.getSession();
 		MemberVO login = service.login(vo);
-		System.out.println("3번째" + login);
 		if(login == null) {
+			System.out.println("로그인실패");
 			session.setAttribute("member", null);
 			rttr.addFlashAttribute("msg", false);
 		}else {
 			session.setAttribute("member", login);
-			//System.out.println("1번쨰"+login.getUsername());
+			
 		}
-		System.out.println("로그인성공");
 		return "redirect:/";
 	}
 	

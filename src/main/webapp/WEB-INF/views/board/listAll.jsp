@@ -8,40 +8,49 @@
 <head>
 <title>게시판 목록</title>
 </head>
-<form action = "regist" method = "get">
-
 <body>
-<h1>List page</h1>
-<table border="1" width="880">
-<tr>
-        <td width="77">
-            <p align="center">글번호</p>
-        </td>
-        <td width="327">
-            <p align="center">제목</p>
-        </td>
-        <td width="197">
-            <p align="center">작성자</p>
-        </td>
-        <td width="155">
-            <p align="center">작성일</p>
-        </td>
-        <td width="90">
-            <p align="center">조회수</p>
-        </td>
-        </tr>
-        <c:forEach items="${list}" var="boardVO">
-	<tr>
-        <td>${boardVO.bno}</td>
-        <td><a href='./read?bno=${boardVO.bno}'>${boardVO.title}</a></td>
-        <td>${boardVO.user_id}</td>
-        <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
-				value="${boardVO.regdate}" /></td>
-        <td><span class="badge bg-red">${boardVO.viewcnt}</span></td>
-	</tr>
-		</c:forEach>
-    </table>
-     <a href ="${pageContext.request.contextPath}/board/write">글쓰기</button>
+	<div class="container">
+		<div class="list-box" style="height:800px;">
+			<h1 class="text-center">List page</h1>
+			<div class="card">
+				<div class="card-header" >
+					<a href="${pageContext.request.contextPath}/board/write" class="btn btn-primary" >글쓰기</a>
+				</div>
+				<div class="card-body">
+				<table class="table table-hover">
+				<thead class="thead-dark">
+					<tr>
+				        <td>
+				            <p>글번호</p>
+				        </td>
+				        <td>
+				            <p>제목</p>
+				        </td>
+				        <td>
+				            <p>작성자</p>
+				        </td>
+				        <td>
+				            <p>작성일</p>
+				        </td>
+				        <td>
+				            <p>조회수</p>
+				        </td>
+			        </tr>
+				</thead>
+			        <c:forEach items="${list}" var="boardVO">
+				<tr>
+			        <td>${boardVO.bno}</td>
+			        <td><a href='./read?bno=${boardVO.bno}'>${boardVO.title}</a></td>
+			        <td>${boardVO.user_id}</td>
+			        <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
+							value="${boardVO.regdate}" /></td>
+			        <td>${boardVO.viewcnt}</td>
+				</tr>
+					</c:forEach>
+			    </table>
+				</div>
+			</div>
+     	</div>
+     </div>
    </body>
-    </form>
 </html>

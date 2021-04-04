@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="create">
 		insert into board (title, content, user_id, viewcnt)
-		values(#{title}, #{content}, #{user_id}, 0 )
+		values(#{title}, #{content}, #{user_id}, #{viewcnt})
 	</insert>
  
 	<select id="listAll" resultType="com.study.tw.vo.BoardVO">

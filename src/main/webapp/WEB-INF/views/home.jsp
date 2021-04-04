@@ -9,10 +9,22 @@
 <h1>
 	study  
 </h1>
-<p>이름은 ${member.username}환영합니다</p>
+
+<c:if test="${msg == false }">
+	<script>
+		alert('아이디 또는 비밀번호가 틀립니다.');	
+	</script>
+</c:if>
+
+<c:if test="${member == null }">
 <a href="${pageContext.request.contextPath}/auth/register">회원가입</a>
 <a href="${pageContext.request.contextPath}/auth/login">로그인</a>
-<a href="${pageContext.request.contextPath}/auth/logout.do">로그아웃</a>
+</c:if>
+
+<c:if test="${member != null }">
+<p>이름은 ${member.username}환영합니다</p>
+<a href="${pageContext.request.contextPath}/auth/logout">로그아웃</a>
 <a href="${pageContext.request.contextPath}/board/listAll">listpage</a>
+</c:if>
 </body>
 </html>
