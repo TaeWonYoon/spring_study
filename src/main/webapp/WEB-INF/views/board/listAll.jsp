@@ -37,9 +37,10 @@
 				        </td>
 			        </tr>
 				</thead>
-			        <c:forEach items="${list}" var="boardVO">
+					
+			        <c:forEach items="${list}" var="boardVO" varStatus="status">
 				<tr>
-			        <td>${boardVO.bno}</td>
+			        <td>${status.count}</td>
 			        <td><a href='./read?bno=${boardVO.bno}'>${boardVO.title}</a></td>
 			        <td>${boardVO.user_id}</td>
 			        <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"

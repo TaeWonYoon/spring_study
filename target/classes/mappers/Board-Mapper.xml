@@ -30,7 +30,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 where bno = #{bno}
 	 </select>
 
-
+	<update id="update">
+ 	update board set title = #{title}, content =#{content} 
+ 	where bno = #{bno}
+ 	</update>
+ 	<delete id="delete">
+ 		delete from board where bno = #{bno}
+ 	</delete>
 <!-- 
 	<select id="read" resultType="com.myp.domain.BoardVO">
 		select * from board

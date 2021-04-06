@@ -32,4 +32,15 @@ public class BoardServiceImpl implements BoardService {
 			   //dao.boardHit(bno);
 		return dao.read(bno);
 	}
+	
+	@Override
+	public void modify(BoardVO vo) throws Exception {
+		dao.update(vo);
+	}
+	
+	@Override
+	public void delete(int bno) throws Exception {
+		// TODO Auto-generated method stub
+		dao.delete(bno);
+	}
 }

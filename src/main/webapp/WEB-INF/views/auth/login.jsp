@@ -8,8 +8,8 @@
 </head>
 <body>
 
-	<div class="m-5"><br><br>
-		<div style='width: 800px; margin: 0 auto; padding: 50px;border:2px solid black; border-radius: 20px;'>
+	<div class="m-4"><br><br>
+		<div style='width: 900px; margin: 0 auto; padding: 50px;border:2px solid black; border-radius: 20px;'>
 			<form name='homeForm' method="post" action="${pageContext.request.contextPath}/auth/login.do">
 				<c:if test="${member == null}">
 					<h2 class="form-signin-heading">Please sign in</h2>
@@ -33,7 +33,7 @@
 						</div>
 					</div>
 					<div>
-						<button class="btn btn-lg btn-primary btn-block" type="submit">회원가입</button>
+						<a href="./register" class="btn btn-lg btn-primary btn-block" >회원가입</a>
 						<div class="float-end">
 						<input type="submit" value="로그인" class="btn btn-lg btn-danger btn-block">
 						</div>

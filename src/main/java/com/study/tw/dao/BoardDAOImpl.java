@@ -35,4 +35,14 @@ public class BoardDAOImpl implements BoardDAO{
 		return session.selectList(namespace+".listAll");
 	}
 	
+	@Override
+	public void update(BoardVO vo) throws Exception {
+		session.update(namespace+".update", vo);
+	}
+	
+	@Override
+	public void delete(int bno) throws Exception {
+		// TODO Auto-generated method stub
+		session.delete(namespace+".delete", bno);
+	}
 }

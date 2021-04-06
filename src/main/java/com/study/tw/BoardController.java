@@ -1,9 +1,5 @@
 package com.study.tw;
 
-import java.io.PrintWriter;
-
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.study.tw.lib.Login;
 import com.study.tw.service.BoardService;
@@ -26,7 +21,6 @@ public class BoardController {
 
 	@Autowired
 	private BoardService service; 
-	
 	
 	
 	@RequestMapping(value = "/write.do", method = RequestMethod.POST)
@@ -42,7 +36,7 @@ public class BoardController {
 		session = req.getSession();
 		if(session.getAttribute("member") == null) {
 			Login login = new Login();
-			login.LoginAuth("",res);
+			login.LoginAuth(res);
 		} 
 		
 		model.addAttribute("list",service.listAll()); 
@@ -55,7 +49,7 @@ public class BoardController {
 		session = req.getSession();
 		if(session.getAttribute("member") == null) {
 			Login login = new Login();
-			login.LoginAuth("",res);
+			login.LoginAuth(res);
 		} 
 		
 		System.out.println("세션아이디:"+session.getAttribute("member"));
@@ -72,4 +66,26 @@ public class BoardController {
 		
 		return "/board/read.page";
 	  }
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.GET) 
+	public String modify(@RequestParam("bno")int bno,BoardVO board, Model model) throws Exception{
+		
+		model.addAttribute("board_vo",service.read(bno));	 
+		
+		return "/board/modify.page";
+	}
+	
+	@RequestMapping(value = "/modify.do", method = RequestMethod.POST) 
+	public String modifyDo(BoardVO vo) throws Exception{
+		service.modify(vo);
+		return "redirect:/board/read?bno="+vo.getBno();
+	}
+	
+	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
+	public String delete(@RequestParam("bno")int bno) throws Exception {
+		System.out.println("delete매핑됨" + bno);
+		service.delete(bno);
+		
+		return "redirect:/board/listAll";
+	}
 }
