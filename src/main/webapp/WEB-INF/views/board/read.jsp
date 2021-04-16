@@ -23,6 +23,7 @@
 								<button type="button" id="dlt" class="btn btn-danger btn-lg">삭제</button>
 							</c:if>
 							<button type="submit" formaction="listAll" formmethod="get" class="btn btn-warning btn-lg">목록</button>
+							<input type="hidden" name="num" value="${num}">
 						</div>
 					<input type="hidden" name ="bno" class="form-control" value ="${board_vo.bno}"  />
 					</form>

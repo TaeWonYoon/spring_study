@@ -11,15 +11,15 @@
 					<a href="${pageContext.request.contextPath}/board/write"
 						class="btn btn-primary">글쓰기</a>
 					<div class="float-end">
-					<form action="./listTest.do" id="fm_search" class="form-select form-select-sm mb-2" aria-label=".form-select-lg example">
-					<select name="condition" id="condition">
+					<form id="fm_search" method="get" class="form-select form-select-sm mb-2" aria-label=".form-select-lg example">
+					<select name="condition">
 					<option value="search_t">검색</option>
 					<option value="title">제목</option>
 					<option value="user_id">작성자</option>
 					</select>
 					<input name="content" id="content">
 					<button type="button" id="search" class="btn btn-success">검색</button>
-					<input type="hidden"  name ="num" value="1">
+					<input type="hidden"  name="num" value="1">
 					</form>
 					</div>
 				</div>
@@ -74,12 +74,16 @@
 			</div>
 		</div>
 	</div>
+	<button class="btn btn-danger" id="back_btn">뒤로가기</button>
 	
 	<script>
 		$('#search').on('click', function() {
 			if ($('#content').val() == '') {
+				$("#fm_search").attr("action", "./listAll").submit();
 				return false;
 			}
-			$('#fm_search').submit();
-		});
+			else {
+				$("#fm_search").attr("action", "./listTest.do").submit();
+			}
+		})
 	</script>

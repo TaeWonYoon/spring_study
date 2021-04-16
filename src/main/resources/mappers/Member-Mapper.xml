@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="login" resultType="com.study.tw.vo.MemberVO">
-		select userid, userpass, username
+		select userid, userpass, username, level
 		from member
 		where userid = #{userid} and userpass = #{userpass} 
 	</select>

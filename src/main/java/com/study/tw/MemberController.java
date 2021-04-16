@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.study.tw.lib.Login;
 import com.study.tw.service.MemberService;
 import com.study.tw.vo.MemberVO;
 
@@ -54,18 +55,21 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public String loginDo(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
+	public String loginDo(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr,HttpServletResponse res) throws Exception{
 		HttpSession session = req.getSession();
 		MemberVO login = service.login(vo);
+		String redirect = ""; 
 		if(login == null) {
 			System.out.println("로그인실패");
 			session.setAttribute("member", null);
-			rttr.addFlashAttribute("msg", false);
+			//rttr.addFlashAttribute("msg", false);
+			Login loginDo = new Login();
+			loginDo.LoginDo(res);
 		}else {
 			session.setAttribute("member", login);
-			
+			redirect = "redirect:/";
 		}
-		return "redirect:/";
+		return redirect;
 	}
 	
 	@RequestMapping(value = "/logout")

@@ -10,17 +10,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{title}, #{content}, #{user_id}, #{viewcnt})
 	</insert>
  
-	<select id="listAll" resultType="com.study.tw.vo.BoardVO">
-
+	<select id="listAll" parameterType="hashMap" resultType="com.study.tw.vo.BoardVO">
 	 <![CDATA[
 	 select 
 	   bno, title, content, user_id, regdate, viewcnt 
 	 from 
 	   board 
-	 where bno > 0 
+	 where 
+	 bno > 0
 	 order by bno desc
-	 ]]>  
+	 limit #{displayPost}, #{postNum}
+	 ]]>
  	</select>
+ 	
+ 
+ 	<select id="listAllSearch" parameterType="hashMap" resultType="com.study.tw.vo.BoardVO">
+	 select 
+	   bno, title, content, user_id, regdate, viewcnt 
+	 from 
+	   board 
+	 where 
+	 <![CDATA[
+	 bno > 0 and
+	 ]]>
+	 <include refid="search" />
+	 order by bno desc
+	 limit #{displayPost}, #{postNum}
+ 	</select>
+
+ 	<sql id="search">
+ 	
+ 		<choose>
+		 <when test="search_t != null and search_t != ''">
+		 	title like "%${search_t}%" or user_id like "%${search_t}%" 
+		 </when>
+		 <when test="title != null and title != ''">
+		 	title like "%${title}%"
+		 </when>
+		 <when test="user_id != null and user_id != ''">
+		 	user_id like "%${user_id}%"
+		 </when>
+	 	</choose>
+	 </sql>
+	 
  	
  	 <select id="read" resultType="com.study.tw.vo.BoardVO">
 	 select 
@@ -31,7 +63,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 </select>
 
 	<update id="update">
- 	update board set title = #{title}, content =#{content} 
+ 	update board set title = #{title}, content = #{content} 
  	where bno = #{bno}
  	</update>
  	<delete id="delete">
@@ -43,5 +75,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where bno = #{bno}
 	</select>
  -->
+ 	<update id="updateViewCnt">
+		update board set viewcnt = viewcnt + 1
+		where bno = #{bno}
+	</update>
 
+	<select id="count" resultType="int">
+		select count(bno) from board;
+	</select>
+	
 </mapper>

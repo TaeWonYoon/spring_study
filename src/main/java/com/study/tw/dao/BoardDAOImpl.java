@@ -1,5 +1,7 @@
 package com.study.tw.dao;
 
+
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -25,14 +27,35 @@ public class BoardDAOImpl implements BoardDAO{
 	
 	@Override
 	public BoardVO read(int bno) throws Exception {
-		// TODO Auto-generated method stub
 		return session.selectOne(namespace+".read", bno);
 	}
 	
+	
 	@Override
-	public List<BoardVO> listAll() throws Exception {
-		// TODO Auto-generated method stub
-		return session.selectList(namespace+".listAll");
+	public List<BoardVO> listAllSearch(int displayPost, int postNum, String content,String condition) throws Exception {
+		HashMap data = new HashMap();
+		 data.put("displayPost", displayPost);
+		 data.put("postNum", postNum);
+		 if(condition.equals("title")) {
+			 data.put("title", content);
+		 } else if (condition.equals("user_id")) {
+			 data.put("user_id", content);
+		 } else if (condition.equals("search_t") && (!content.equals("ass"))) {
+			 data.put("search_t", content);
+		 } else if (content.equals("ass")) {
+			 data.put("contents", content);
+		 } 
+		 System.out.println("content 는 " + content );
+		return session.selectList(namespace+".listAllSearch", data);
+	}
+	
+	@Override
+	public List<BoardVO> listAll(int displayPost, int postNum) throws Exception {
+		HashMap data = new HashMap();
+		 data.put("displayPost", displayPost);
+		 data.put("postNum", postNum);
+		 System.out.println(displayPost + " d<< p>> " + postNum);
+		return session.selectList(namespace+".listAll", data);
 	}
 	
 	@Override
@@ -44,5 +67,17 @@ public class BoardDAOImpl implements BoardDAO{
 	public void delete(int bno) throws Exception {
 		// TODO Auto-generated method stub
 		session.delete(namespace+".delete", bno);
+	}
+	
+	@Override
+	public void boardHit(int bno) throws Exception {
+		// TODO Auto-generated method stub
+		session.update(namespace+".updateViewCnt", bno);
+	}
+	
+	@Override
+	public int count() throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace+".count");
 	}
 }

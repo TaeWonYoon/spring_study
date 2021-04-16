@@ -24,7 +24,6 @@
         <put-attribute name="scripts" value="" />
     </definition>     
     
-    
      <definition name="*.pages" extends="base">
         <put-attribute name="body" value="/WEB-INF/views/{1}.jsp" />
         <put-attribute name="scripts" value="/WEB-INF/views/{1}_js.jsp" />

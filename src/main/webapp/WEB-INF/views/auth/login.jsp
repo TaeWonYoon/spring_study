@@ -9,7 +9,7 @@
 <body>
 
 	<div class="m-4"><br><br>
-		<div style='width: 900px; margin: 0 auto; padding: 50px;border:2px solid black; border-radius: 20px;'>
+		<div style='width: 900px; margin: 0 auto; padding: 50px;border:2px solid black; border-radius: 20px;margin-right:22%;margin-top:60px;'>
 			<form name='homeForm' method="post" action="${pageContext.request.contextPath}/auth/login.do">
 				<c:if test="${member == null}">
 					<h2 class="form-signin-heading">Please sign in</h2>

@@ -12,6 +12,7 @@
             height: 120px;
             text-align: center;
             border-bottom: 1px solid black;
+            background: #f2f2f2;
         }
         #h_main a {
         	color: #4da6ff;
@@ -21,17 +22,21 @@
         	color: #0073e6;
         }
         #left{
-            float:left;
+             float:left;
              width:15%;
-             height: 800px; 
-            background-color: gray;
+             height: 1200px; 
+             background-color: #80ccff;
+        }
+        #left .card {
+        	background-color: #33adff;
         }
         #main{
-            float:left;
+             float:left;
              width:85%;
-             height: 800px; 
-            
+             height: 1200px; 
+             background:#e6e6e6;
         }
+        /*
         #footer{
             width: 100%;
             height: 150px;            
@@ -39,6 +44,7 @@
             background-color: orange;
             clear:both;
         }
+        */
          #left, #main{ 
                min-height: 600px;
          }
@@ -54,8 +60,9 @@
     <div id="header"><tiles:insertAttribute name="header" /></div>
     <div id="left"><tiles:insertAttribute name="left" /></div>
     <div id="main"><tiles:insertAttribute name="body" /></div>    
+    <!--  
     <div id="footer"><tiles:insertAttribute name="footer" /></div>
-    
+    -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

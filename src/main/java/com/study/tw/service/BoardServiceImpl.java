@@ -6,6 +6,8 @@ import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.study.tw.dao.BoardDAO;
 import com.study.tw.vo.BoardVO;
@@ -22,14 +24,22 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public List<BoardVO> listAll() throws Exception {
+	public List<BoardVO> listAll(int displayPost, int postNum) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.listAll();
+		return dao.listAll(displayPost, postNum);
 	}
 	
+
+	@Override
+	public List<BoardVO> listAllSearch(int displayPost, int postNum,String content, String condition) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.listAllSearch(displayPost, postNum, content, condition);
+	}
+	
+	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public BoardVO read(Integer bno) throws Exception {
-			   //dao.boardHit(bno);
+			   dao.boardHit(bno);
 		return dao.read(bno);
 	}
 	
@@ -42,5 +52,11 @@ public class BoardServiceImpl implements BoardService {
 	public void delete(int bno) throws Exception {
 		// TODO Auto-generated method stub
 		dao.delete(bno);
+	}
+	
+	@Override
+	public int count() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.count();
 	}
 }
