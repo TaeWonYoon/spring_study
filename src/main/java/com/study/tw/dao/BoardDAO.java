@@ -22,5 +22,4 @@ public interface BoardDAO {
 
 	public int count() throws Exception;
 
-	
 }

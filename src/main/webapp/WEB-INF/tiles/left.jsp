@@ -26,9 +26,9 @@
 			</h8>
 		        <div class="col-12 m-1" >
 		          <div class="list-group" id="list-tab" role="tablist">
-		            <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="home">내정보 변경</a>
-		            <a class="list-group-item list-group-item-action active" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="profile">회원탈퇴</a>
-		            <a class="list-group-item list-group-item-action active" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="profile">로그아웃</a>
+		            <a class="list-group-item list-group-item-action active" id="list-home-list" href="${pageContext.request.contextPath}/auth/modify?userid=${member.userid}" role="tab" aria-controls="home">내정보 변경</a>
+		            <a class="list-group-item list-group-item-action active" id="list-profile-list" href="${pageContext.request.contextPath}/auth/delete" role="tab" aria-controls="profile">회원탈퇴</a>
+		            <a class="list-group-item list-group-item-action active" id="list-profile-list" href="${pageContext.request.contextPath}/board/listAll?num=1" class="btn btn-warning" role="tab" aria-controls="profile">게시글페이지</a>
 		          </div>
      		 	</div>	
 			<hr>

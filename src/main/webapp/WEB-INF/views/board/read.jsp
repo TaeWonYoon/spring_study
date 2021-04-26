@@ -32,16 +32,51 @@
 		</div>
 		
 		<div class="m-5">
-			<div class="card">
-					<table>
-					<tr><th>댓글</th></tr>	
-					<tr><th>댓글</th></tr>		
-					<tr><th>댓글</th></tr>						
+			<div class="card" style="margin-top:20px;">
+				<div class="card-body">
+					<table class="table">
+						<colgroup>
+							<col width="8%">
+							<col width="30%">
+							<col width="10%">
+							<col width="25%">
+							<col width="8%">
+						</colgroup>
+						<thead class="table-warning">
+							<tr>
+								<td>번호</td>
+								<td>댓글</td>
+								<td>아이디</td>
+								<td>날짜</td>
+								<td>삭제</td>
+							</tr>
+						</thead>
+						<tr>
+							<td>안녕</td>
+							<td>안녕</td>
+							<td>안녕</td>
+							<td>안녕</td>
+							<td>안녕</td>
+						</tr>
+						<tr>
+							<td>안녕</td>
+							<td>안녕</td>
+							<td>안녕</td>
+							<td>안녕</td>
+							<td>안녕</td>
+						</tr>
 					</table>
+				</div>
+				<div class="card-footer">
+					<div class="input-group mb-3">
+					  <input type="text" class="form-control" placeholder="매너글을 작성해주세요。" name="comment_content">
+					  <div class="input-group-append">
+					    <button class="btn btn-outline-primary" type="button" id="btnCommentAdd">등록</button>
+					  </div>
+					</div>
+				</div>	
 			</div>
 		</div>
-	</div>
-	
 	
 	<script>
 		$('#dlt').on('click', function(){

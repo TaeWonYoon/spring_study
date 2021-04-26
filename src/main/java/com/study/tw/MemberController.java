@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -45,7 +47,6 @@ public class MemberController {
 	@RequestMapping(value = "/register.do", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo) throws Exception {
 		service.register(vo);
-		System.out.println(vo.getTel());
 		return "redirect:/";
 	}
 	
@@ -60,7 +61,6 @@ public class MemberController {
 		MemberVO login = service.login(vo);
 		String redirect = ""; 
 		if(login == null) {
-			System.out.println("로그인실패");
 			session.setAttribute("member", null);
 			//rttr.addFlashAttribute("msg", false);
 			Login loginDo = new Login();
@@ -83,5 +83,35 @@ public class MemberController {
 	public int idChk(MemberVO vo) throws Exception {
 		int result = service.idChk(vo);
 		return result;
+	}
+	
+	@RequestMapping(value = "/modify")
+	public String modify(@RequestParam("userid") String userId, Model model) throws Exception {
+		model.addAttribute("infor",service.modify(userId));
+		return "/auth/modify.pages";
+	}
+	
+	@RequestMapping(value = "/modify.do")
+	public String ModifyDo(MemberVO vo, HttpSession session) throws Exception {
+		service.modifyDo(vo);
+		session.invalidate();
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/comment")
+	public String comment() throws Exception {
+		return "/auth/comment.pages";
+	}
+	
+	@RequestMapping(value = "/delete")
+	public String delete() throws Exception {
+		return "/auth/delete.pages";
+	}
+	
+	@RequestMapping(value = "/delete.do")
+	public String deleteDo(MemberVO vo, HttpSession session) throws Exception {
+			service.delete(vo);
+			session.invalidate();
+		return "redirect:/";
 	}
 }

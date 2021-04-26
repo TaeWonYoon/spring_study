@@ -10,5 +10,9 @@ public interface MemberService {
 
 	public int idChk(MemberVO vo) throws Exception;
 	
+	public MemberVO modify(String userId) throws Exception;
 	
+	public void modifyDo(MemberVO vo) throws Exception;
+	
+	public void delete(MemberVO vo) throws Exception;
 }

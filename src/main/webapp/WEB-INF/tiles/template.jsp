@@ -34,7 +34,6 @@
              float:left;
              width:85%;
              height: 1200px; 
-             background:#e6e6e6;
         }
         /*
         #footer{

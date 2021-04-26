@@ -30,4 +30,19 @@ public class MemberDAOImpl implements MemberDAO {
 		int result = session.selectOne(namespace+".idChk", vo);
 		return result;
 	}
+	
+	@Override
+	public MemberVO modify(String userId) throws Exception {
+		return session.selectOne(namespace+".modify", userId);
+	}
+	
+	@Override
+	public void update(MemberVO vo) throws Exception {
+		session.update(namespace+".update",vo);
+	}
+	
+	@Override
+	public void delete(MemberVO vo) throws Exception {
+		session.delete(namespace+".delete", vo);
+	}
 }

@@ -9,4 +9,10 @@ public interface MemberDAO {
 	public MemberVO login(MemberVO vo) throws Exception;
 	
 	public int idChk(MemberVO vo) throws Exception;
+	
+	public MemberVO modify(String userId) throws Exception;
+	
+	public void update(MemberVO vo) throws Exception;
+	
+	public void delete(MemberVO vo) throws Exception;
 }

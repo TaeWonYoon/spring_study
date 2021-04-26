@@ -29,4 +29,20 @@ public class MemberServiceImpl implements MemberService {
 		int result = dao.idChk(vo);
 		return result;
 	}
+	
+	@Override
+	public MemberVO modify(String userId) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.modify(userId);
+	}
+	
+	@Override
+	public void modifyDo(MemberVO vo) throws Exception {
+		 dao.update(vo);
+	}
+	
+	@Override
+	public void delete(MemberVO vo) throws Exception {
+		dao.delete(vo);
+	}
 }

@@ -45,7 +45,6 @@ public class BoardDAOImpl implements BoardDAO{
 		 } else if (content.equals("ass")) {
 			 data.put("contents", content);
 		 } 
-		 System.out.println("content 는 " + content );
 		return session.selectList(namespace+".listAllSearch", data);
 	}
 	
@@ -54,7 +53,6 @@ public class BoardDAOImpl implements BoardDAO{
 		HashMap data = new HashMap();
 		 data.put("displayPost", displayPost);
 		 data.put("postNum", postNum);
-		 System.out.println(displayPost + " d<< p>> " + postNum);
 		return session.selectList(namespace+".listAll", data);
 	}
 	

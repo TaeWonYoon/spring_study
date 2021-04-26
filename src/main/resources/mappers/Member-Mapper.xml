@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="UserMapper">
 
 	<insert id="register">
@@ -20,4 +21,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where userid = #{userid}
 	</select>
 
+	<select id="modify" resultType="com.study.tw.vo.MemberVO">
+	 select 
+	   userid, username, userpass, tel, email, birthday
+	 from 
+		member
+	 where userid = #{userid}
+	 </select>
+	 
+	 <update id="update">
+	 	update member set 
+	 	userpass = #{userpass}, tel = #{tel}
+	 	where userid = #{userid}
+	 </update>
+	 
+	 <delete id="delete">
+	 	delete from member where userid = #{userid} and userpass = #{userpass}
+	 </delete>
 </mapper>
