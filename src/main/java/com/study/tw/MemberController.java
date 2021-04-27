@@ -98,11 +98,6 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/comment")
-	public String comment() throws Exception {
-		return "/auth/comment.pages";
-	}
-	
 	@RequestMapping(value = "/delete")
 	public String delete() throws Exception {
 		return "/auth/delete.pages";

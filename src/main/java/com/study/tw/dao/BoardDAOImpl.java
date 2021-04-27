@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.study.tw.vo.BoardVO;
+import com.study.tw.vo.CommentVO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO{
@@ -77,5 +78,24 @@ public class BoardDAOImpl implements BoardDAO{
 	public int count() throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace+".count");
+	}
+	
+	//comment Table 사용
+	
+	@Override
+	public void commetCreate(CommentVO vo) throws Exception {
+		session.insert(namespace+".commentCreate", vo);
+	}
+	
+	@Override
+	public List<CommentVO> commentList(int readBno) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".commentList", readBno);
+	}
+	
+	@Override
+	public void commentDelete(int commentBno) throws Exception {
+		// TODO Auto-generated method stub
+		session.delete(namespace+".commentDelete", commentBno);
 	}
 }

@@ -3,6 +3,7 @@ package com.study.tw.service;
 import java.util.List;
 
 import com.study.tw.vo.BoardVO;
+import com.study.tw.vo.CommentVO;
 
 public interface BoardService {
 
@@ -19,4 +20,8 @@ public interface BoardService {
 	public void delete(int bno) throws Exception;
 	
 	public int count() throws Exception;
+	
+	public void commentCreate(CommentVO vo) throws Exception;
+
+	public List<CommentVO> commentList(int readBno) throws Exception;
 }

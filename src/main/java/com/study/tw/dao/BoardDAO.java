@@ -3,6 +3,7 @@ package com.study.tw.dao;
 import java.util.List;
 
 import com.study.tw.vo.BoardVO;
+import com.study.tw.vo.CommentVO;
 
 public interface BoardDAO {
 
@@ -21,5 +22,10 @@ public interface BoardDAO {
 	public void boardHit(int bno) throws Exception;
 
 	public int count() throws Exception;
+	
+	public void commetCreate(CommentVO vo) throws Exception;
+	
+	public List<CommentVO> commentList(int readBno) throws Exception;
 
+	public void commentDelete(int commentBno) throws Exception;
 }

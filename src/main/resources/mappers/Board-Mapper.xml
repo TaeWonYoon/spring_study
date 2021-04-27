@@ -77,7 +77,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<select id="count" resultType="int">
-		select count(bno) from board;
+		select count(bno) from board
 	</select>
 	
+	<!-- commentTable -->
+	<insert id="commentCreate">
+		insert into comment(readBno, writer, user_id, comment)
+		values(#{readBno}, #{writer}, #{user_id}, #{comment})
+	</insert>
+	
+	<select id="commentList" resultType="com.study.tw.vo.CommentVO">
+		select
+			readBno, commentBno, user_id, comment, regdate
+		from comment
+		where readBno = #{readBno}
+		order by regdate desc  	
+	</select>
+	
+	<delete id="commentDelete">
+		delete from comment where commentBno = #{commentBno}
+	</delete>
 </mapper>

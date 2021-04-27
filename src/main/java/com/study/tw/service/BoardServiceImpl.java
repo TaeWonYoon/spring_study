@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.study.tw.dao.BoardDAO;
 import com.study.tw.vo.BoardVO;
+import com.study.tw.vo.CommentVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -58,5 +59,16 @@ public class BoardServiceImpl implements BoardService {
 	public int count() throws Exception {
 		// TODO Auto-generated method stub
 		return dao.count();
+	}
+	
+	@Override
+	public void commentCreate(CommentVO vo) throws Exception {
+		dao.commetCreate(vo);
+	}
+	
+	@Override
+	public List<CommentVO> commentList(int readBno) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.commentList(readBno);
 	}
 }

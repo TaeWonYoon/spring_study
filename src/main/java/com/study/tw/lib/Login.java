@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import javax.servlet.http.HttpServletResponse;
 
 public class Login {
+	
+	//HttpServletResponse res;
 	public void LoginAuth(HttpServletResponse res)  {
 		
 			try {

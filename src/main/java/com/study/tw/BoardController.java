@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.study.tw.lib.Login;
 import com.study.tw.service.BoardService;
 import com.study.tw.vo.BoardVO;
+import com.study.tw.vo.CommentVO;
 import com.study.tw.vo.Page;
 
 @Controller
@@ -105,7 +106,7 @@ public class BoardController {
 		model.addAttribute("num", num);
 		//mv.addObject("board", board);
 		model.addAttribute("board_vo",service.read(bno)); // read -	 
-		
+		model.addAttribute("commentList", service.commentList(bno));
 		return "/board/read.page";
 	  }
 	
@@ -130,5 +131,25 @@ public class BoardController {
 		
 		return "redirect:/board/listAll";
 	}
+/*	
+	@RequestMapping(value = "/comment")
+	public String comment(Model model) throws Exception {
+		
+		model.addAttribute("commentList", service.commentList(1));
+		return "/board/comment.page";
+	}
+*/	
 	
+	@RequestMapping(value = "/comment.do", method = RequestMethod.POST)
+	public String commentDo(CommentVO vo) throws Exception {
+		service.commentCreate(vo);
+		return "redirect:/board/read?bno="+vo.getReadBno()+"&num=1";
+	}
+	
+	@RequestMapping(value = "/commentDelte.do")
+	public String comment(@RequestParam("test") int test) throws Exception {
+		
+		System.out.println(test);
+		return "";
+	}
 }
