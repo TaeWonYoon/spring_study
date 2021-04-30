@@ -118,16 +118,13 @@
 		
 		//타이틀 글자수 ... subString
 		var writeSub = document.getElementsByClassName("writeSub");
-	    for(var i = 0; i < $('.writeSub').length; i++) {
-	        
-	        writeSubs = writeSub[i];
+	    //for(var i = 0; i < $('.writeSub').length; i++) {
+	      for(var i = 0; i < writeSub.length; i++) {  
+	        var writeSubs = writeSub[i];
 	        var writeSubsText = writeSubs.innerText;
-	        var writeSubsLength = writeSubs.innerText.length;
 	        if(writeSubs.innerText.length > 19) {
 	            writeSubs.innerText = writeSubsText.substr(0,18) + ".....";
-	        }
-	        console.log(writeSubs.innerText.length);
-	    
+	        	}
 	        }
 	    });
 </script>

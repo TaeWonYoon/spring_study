@@ -3,6 +3,7 @@ package com.study.tw.dao;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.study.tw.vo.MemberVO;
@@ -10,7 +11,7 @@ import com.study.tw.vo.MemberVO;
 @Repository
 public class MemberDAOImpl implements MemberDAO {
 
-	@Inject
+	@Autowired
 	private SqlSession session;
 	
 	private static String namespace = "UserMapper";

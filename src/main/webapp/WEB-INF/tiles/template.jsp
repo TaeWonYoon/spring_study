@@ -15,7 +15,6 @@
             background: #80ccff;
         }
         #h_main a {
-        	margin-top:10px;
         	color: #ff1a1a;
         	text-decoration: none;
         }
