@@ -24,4 +24,6 @@ public interface BoardService {
 	public void commentCreate(CommentVO vo) throws Exception;
 
 	public List<CommentVO> commentList(int readBno) throws Exception;
+	
+	public void commentDelete(int commentBno) throws Exception;
 }

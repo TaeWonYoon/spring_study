@@ -1,7 +1,7 @@
 package com.study.tw.vo;
 
 public class Page {
-	
+
 	// 현재 페이지 번호
 	private int num;
 	// 게시물 총 갯수
@@ -21,74 +21,78 @@ public class Page {
 	// 다음/이전 표시 여부
 	private boolean prev;
 	private boolean next;
-	
+
+	public Page() {
+	}
+
 	public void setNum(int num) {
-		 this.num = num;
-		}
+		this.num = num;
+	}
+
 	public int getNum() {
 		return num;
 	}
 
-		public void setCount(int count) {
-		 this.count = count;
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public int getPostNum() {
+		return postNum;
+	}
+
+	public int getPageNum() {
+		return pageNum;
+	}
+
+	public int getDisplayPost() {
+		return displayPost;
+	}
+
+	public int getPageNumCnt() {
+		return pageNumCnt;
+	}
+
+	public int getEndPageNum() {
+		return endPageNum;
+	}
+
+	public int getStartPageNum() {
+		return startPageNum;
+	}
+
+	public boolean getPrev() {
+		return prev;
+	}
+
+	public boolean getNext() {
+		return next;
+	}
+
+	public void dataCalc() {
+
+		// 마지막 번호
+		endPageNum = (int) (Math.ceil((double) num / (double) pageNumCnt) * pageNumCnt);
+
+		// 시작 번호
+		startPageNum = endPageNum - (pageNumCnt - 1);
+		//System.out.println("enpN= " + endPageNum + " startP= " + startPageNum);
+		// 마지막 번호 재계산
+		int endPageNum_tmp = (int) (Math.ceil((double) count / (double) pageNumCnt));
+
+		if (endPageNum > endPageNum_tmp) {
+			endPageNum = endPageNum_tmp;
 		}
 
-		public int getCount() {
-		 return count;
-		}
+		prev = startPageNum == 1 ? false : true;
+		next = endPageNum * pageNumCnt >= count ? false : true;
 
-		public int getPostNum() {
-		 return postNum;
-		}
+		displayPost = (num - 1) * postNum;
 
-		public int getPageNum() {
-		 return pageNum;
-		}
-
-		public int getDisplayPost() {
-		 return displayPost;
-		}
-
-		public int getPageNumCnt() {
-		 return pageNumCnt;
-		}
-
-		public int getEndPageNum() {
-		 return endPageNum;
-		}
-
-		public int getStartPageNum() {
-		 return startPageNum;
-		}
-
-		public boolean getPrev() {
-		 return prev;
-		} 
-
-		public boolean getNext() {
-		 return next;
-		}
-    
-		public void dataCalc() {
-			 
-			 // 마지막 번호
-			 endPageNum = (int)(Math.ceil((double)num / (double)pageNumCnt) * pageNumCnt);
-			 
-			 // 시작 번호
-			 startPageNum = endPageNum - (pageNumCnt - 1);
-			 System.out.println("enpN= " + endPageNum + " startP= " + startPageNum);
-			 // 마지막 번호 재계산
-			 int endPageNum_tmp = (int)(Math.ceil((double)count / (double)pageNumCnt));
-			 
-			 if(endPageNum > endPageNum_tmp) {
-			  endPageNum = endPageNum_tmp;
-			 }
-			 
-			 prev = startPageNum == 1 ? false : true;
-			 next = endPageNum * pageNumCnt >= count ? false : true;
-			 
-			 displayPost = (num - 1) * postNum;
-			 
-			}
+	}
 
 }

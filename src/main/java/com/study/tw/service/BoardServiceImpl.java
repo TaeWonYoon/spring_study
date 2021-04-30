@@ -71,4 +71,10 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return dao.commentList(readBno);
 	}
+	
+	@Override
+	public void commentDelete(int commentBno) throws Exception {
+		// TODO Auto-generated method stub
+		dao.commentDelete(commentBno);
+	}
 }

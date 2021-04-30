@@ -30,7 +30,7 @@ public class BoardController {
 	public String writeDo(BoardVO vo) throws Exception {
 		
 		service.create(vo);
-		return "redirect:/board/listAll";
+		return "redirect:/board/listAll?num=1";
 	}
 	
 	@RequestMapping(value= "/write")
@@ -48,8 +48,13 @@ public class BoardController {
 	@RequestMapping(value= "/listAll")
 	public String listAll(Model model,@RequestParam("num") int num,HttpServletResponse res, HttpServletRequest req, HttpSession session)throws Exception {
 		
-		//로그인시에만 페이징처리
 		session = req.getSession();
+		
+		if(session.getAttribute("member") == null) {
+			Login login = new Login();
+			login.LoginAuth(res);
+		} 
+		//로그인시에만 페이징처리
 		if(num == 0) {
 			num = 1;
 		}
@@ -71,6 +76,11 @@ public class BoardController {
 			@RequestParam("content") String content,
 			HttpServletResponse res, HttpServletRequest req, HttpSession session
 			)throws Exception {
+		session = req.getSession();
+		if(session.getAttribute("member") == null) {
+			Login login = new Login();
+			login.LoginAuth(res);
+		} 
 		String title="";
 		String writer ="";
 		//로그인시에만 페이징처리
@@ -79,7 +89,6 @@ public class BoardController {
 			num = 1;
 		}
 		
-		System.out.println("컨디션="+condition+" content="+content);
 		Page page = new Page();
 		page.setNum(num);
 		page.setCount(service.count());  
@@ -101,7 +110,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/read", method = RequestMethod.GET) 
-	  public String read(@RequestParam("bno")int bno,@RequestParam("num") int num, Model model) throws Exception{
+	  public String read(@RequestParam("bno")int bno,@RequestParam("num") int num,
+			  Model model,HttpServletResponse res, HttpServletRequest req, HttpSession session) throws Exception{
+		
+		session = req.getSession();
+		if(session.getAttribute("member") == null) {
+			Login login = new Login();
+			login.LoginAuth(res);
+		}
 		
 		model.addAttribute("num", num);
 		//mv.addObject("board", board);
@@ -126,10 +142,9 @@ public class BoardController {
 	
 	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
 	public String delete(@RequestParam("bno")int bno) throws Exception {
-		System.out.println("delete매핑됨" + bno);
 		service.delete(bno);
 		
-		return "redirect:/board/listAll";
+		return "redirect:/board/listAll?num=1";
 	}
 /*	
 	@RequestMapping(value = "/comment")
@@ -147,9 +162,10 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/commentDelte.do")
-	public String comment(@RequestParam("test") int test) throws Exception {
-		
-		System.out.println(test);
-		return "";
+	public void comment(@RequestParam("commentBno") int commentBno,@RequestParam("num") int num,
+			@RequestParam("bno") int bno,
+			HttpServletResponse res) throws Exception {
+		service.commentDelete(commentBno);
+		res.sendRedirect("./read?bno="+bno+"&num="+num);
 	}
 }

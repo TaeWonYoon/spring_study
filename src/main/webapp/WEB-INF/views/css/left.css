@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.cardbg {
+	background-color: #33adff;
+}
+
+.ifm {
+	float: right;
+}
+#profile_img {
+	border: 1px solid;
+}
+#profile_name {
+	font-size: 30px;
+	text-decoration: none;
+	color: #ffb3b3;
+}
+#profile_n {
+	text-align: center;
+}
+.loginNo {
+	font-size: 20px;
+	font-weight: bold;
+	
+}

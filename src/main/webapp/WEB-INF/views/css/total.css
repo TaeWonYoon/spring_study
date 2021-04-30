@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.text_d {
+	text-decoration: none;
+}
+.text_d:hover {
+	text-decoration: none;
+	font-weight: bold;
+}

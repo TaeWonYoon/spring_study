@@ -33,13 +33,14 @@
 								</td>
 								<td >
 									<c:if test="${member.userid == commentVO.user_id}">
-										<form method="get" action="./commentDelte.do" >
-											<input type="hidden"  name="test" class="test" value="${commentVO.commentBno}"/>
-											<button type="submit" id="btnSubmit" class="btn" style="color:red;">X</button>
+										<form id="deleteForm" method="get" action="./commentDelte.do" >
+											<input type="hidden" name="num" value="${num}">
+											<input type="hidden" name ="bno" class="form-control" value ="${board_vo.bno}"  />
+											<input type="hidden"  name="commentBno" class="test" value="${commentVO.commentBno}"/>
+											<button type="button" class="btn" onclick="commentDelete(${commentVO.commentBno})" style="color:red;">X</button>
 										</form>
 									</c:if>
 								</td>
-								
 							</tr>
 							</c:forEach>
 						</tbody>
@@ -50,27 +51,24 @@
 						<div class="input-group mb-3">
 						  <input type="text" class="form-control" placeholder="매너글을 작성해주세요。" name="comment">
 						  <input type="hidden" name ="writer" value="${board_vo.user_id}">
+						  <input type="hidden" name="num" value="${num}">
 						  <input type="hidden" name ="readBno" value="${board_vo.bno}">
 						  <input type="hidden" name ="user_id" value="${member.userid}">
 						  <div class="input-group-append">
-					    	<button class="btn btn-outline-primary" type="submit">등록</button>
+					    	<button class="btn btn-outline-primary" type="submit" value="${member.userid}">등록</button>
 					  	  </div>
 						</div>
 					</form>
 				</div>
-				
-			<%-- 코멘트삭제 --%>		
-				<div>
-					<form method="post" action="./commentDelete.do">
-						<input id="one" value="${board_vo.bno}">
-						<input id="two" value="${member.userid}">
-						<input id="three" value="${commentVO.commentBno}" />
-					</form>
-				</div>	
 			</div>
-			<script>
-				$("td span").click(function() {
-					$("button").submit();
-				})
-			</script>
-	
+	<script>
+		function commentDelete(commentBno){
+			var msg = confirm("댓글을 삭제합니다");
+			if(msg == true) {
+				$("input[name=commentBno]").val(commentBno);
+				$("#deleteForm").submit();
+			} else {
+				return false;
+			}
+		}
+	</script>
