@@ -1,0 +1,23 @@
+@charset "UTF-8";
+.today_chart_list li{
+	float:left;
+	list-style:none;
+	margin-right: 12px;
+	background: #e6fff7;
+	border: 1px solid;
+	border-radius: 25px;
+}
+.ttl_area {
+	color: black;
+	font-weight: 600;
+	padding: 5px;
+}
+.time_list {
+	list-style: none;
+}
+.item_inner {
+	text-decoration: none;
+}
+.before_slash {
+	margin-left: 15px;
+}

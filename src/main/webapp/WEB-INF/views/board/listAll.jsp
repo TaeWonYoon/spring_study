@@ -3,9 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-	<div class="container">
-		<div class="list-box" style="height: 800px;">
-			<h1 class="text-center" style="margin-right:15%">List page</h1>
+	<div class="container m-5">
+			<h1 class="text-center" style="margin-right:15%;margin-bottom:3%;">List page</h1>
 			<div class="card">
 				<div class="card-header">
 					<a href="${pageContext.request.contextPath}/board/write"
@@ -73,7 +72,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
 	
 	<script>
 		$('#search').on('click', function() {

@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="login" resultType="com.study.tw.vo.MemberVO">
 		select userid, userpass, username, level, birthday
 		from member
-		where userid = #{userid} and userpass = #{userpass} 
+		where userid = #{userid} 
 	</select>
 	
 	<select id="idChk" resultType="int">
@@ -38,5 +38,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 <delete id="delete">
 	 	delete from member where userid = #{userid} and userpass = #{userpass}
 	 </delete>
-
+	
+	<!-- 어드민 페이지 -->
+	<select id="adminList" resultType="com.study.tw.vo.MemberVO">
+		select 
+			userid, username, regdate, birthday, level
+		from member
+		order by level desc
+	</select>
+	<update id="adminModify">
+		update member set
+		level = #{level}
+		where userid = #{userid}
+	</update>
 </mapper>

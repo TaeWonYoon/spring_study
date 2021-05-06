@@ -31,13 +31,13 @@
 									<fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 									value="${commentVO.regdate}"/>
 								</td>
-								<td >
+								<td>
 									<c:if test="${member.userid == commentVO.user_id}">
 										<form id="deleteForm" method="get" action="./commentDelte.do" >
 											<input type="hidden" name="num" value="${num}">
 											<input type="hidden" name ="bno" class="form-control" value ="${board_vo.bno}"  />
 											<input type="hidden"  name="commentBno" class="test" value="${commentVO.commentBno}"/>
-											<button type="button" class="btn" onclick="commentDelete(${commentVO.commentBno})" style="color:red;">X</button>
+											<button type="button" class="btn" onclick="commentDelete('${commentVO.commentBno}')" style="color:red;">X</button>
 										</form>
 									</c:if>
 								</td>

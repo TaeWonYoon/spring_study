@@ -2,11 +2,12 @@ package com.study.tw;
 
 import java.io.PrintWriter;
 
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,8 +24,12 @@ import com.study.tw.vo.MemberVO;
 @RequestMapping(value = "/auth")
 public class MemberController {
 
-	@Inject
+	@Autowired
 	MemberService service;
+	
+	//패스워드 암호화
+	@Autowired
+	BCryptPasswordEncoder pwdEncoder;
 	
 	@RequestMapping(value = "/register")
 	public String getRegister(HttpServletRequest request,HttpServletResponse response) throws Exception {
@@ -46,6 +51,9 @@ public class MemberController {
 	
 	@RequestMapping(value = "/register.do", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo) throws Exception {
+		String inputPass = vo.getUserpass();
+		String userpass = pwdEncoder.encode(inputPass);
+		vo.setUserpass(userpass);
 		service.register(vo);
 		return "redirect:/";
 	}
@@ -58,14 +66,17 @@ public class MemberController {
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String loginDo(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr,HttpServletResponse res) throws Exception{
 		HttpSession session = req.getSession();
+		//디비 암호화 비밀번호 값과 vo비밀번호 값이 같은지 비교
 		MemberVO login = service.login(vo);
+		boolean pwdMacth = pwdEncoder.matches(vo.getUserpass(), login.getUserpass());
+		
 		String redirect = ""; 
-		if(login == null) {
-			session.setAttribute("member", null);
+		if(login == null || !(pwdMacth)) {
 			//rttr.addFlashAttribute("msg", false);
 			Login loginDo = new Login();
 			loginDo.LoginDo(res);
-		}else {
+			redirect = "redirect:/auth/login";
+		} else {
 			session.setAttribute("member", login);
 			redirect = "redirect:/";
 		}
@@ -93,6 +104,9 @@ public class MemberController {
 	
 	@RequestMapping(value = "/modify.do")
 	public String ModifyDo(MemberVO vo, HttpSession session) throws Exception {
+		String inputPass = vo.getUserpass();
+		String userpass = pwdEncoder.encode(inputPass);
+		vo.setUserpass(userpass);
 		service.modifyDo(vo);
 		session.invalidate();
 		return "redirect:/";

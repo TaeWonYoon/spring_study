@@ -1,5 +1,7 @@
 package com.study.tw.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -44,5 +46,15 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void delete(MemberVO vo) throws Exception {
 		dao.delete(vo);
+	}
+	
+	@Override
+	public List<MemberVO> adminList() throws Exception {
+		return dao.adminList();
+	}
+
+	@Override
+	public void adminModify(MemberVO vo) throws Exception {
+		dao.adminModify(vo);
 	}
 }

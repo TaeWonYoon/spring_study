@@ -17,7 +17,7 @@
 			<div>
 				<ul class="list-group">
 					<li class="list-group-item ms-2" id="profile_img">
-						<img src="${pageContext.request.contextPath}/img/dog.png" alt="이미지no">
+						<img src="${pageContext.request.contextPath}/img/dog.png" width="80%"alt="이미지no">
 					</li>
 				</ul>
 			</div>
@@ -27,7 +27,7 @@
 				<span class="loginNo">로그인후 이용해주시기 <br>바랍니다.</span>	
 			</div>
 			<br><br><br><br>
-			<img src="${pageContext.request.contextPath}/img/airport.png" alt="이미지no" width="80" height="80">
+			<img src="${pageContext.request.contextPath}/img/airport.png" alt="이미지no" width="40%" >
 		</div>
 	</c:if>
 
@@ -41,50 +41,56 @@
 		<div class="card-body">
 			<div>
 				<ul class="list-group">
-					<li class="list-group-item ms-2" id="profile_img"><img
-						src="${pageContext.request.contextPath}/img/dog.png" width="80%" alt="이미지no">
+					<li class="list-group-item ms-2" id="profile_img">
+						<img src="${pageContext.request.contextPath}/img/dog.png" width="80%" alt="이미지no">
 					</li>
-					<li class="list-group-item ms-2"><span>등급 :</span> <span
-						class="ifm">${member.level}</span></li>
-					<li class="list-group-item ms-2"><span>이름 :</span> <span
-						class="ifm">${member.username}</span></li>
-					<li class="list-group-item ms-2"><span>아이디 :</span> <span
-						class="ifm">${member.userid}</span></li>
-					<li class="list-group-item ms-2"><span>생일 :</span> <span
-						class="ifm">${member.birthday}</span></li>
+					<li class="list-group-item ms-2">
+						<span>등급 :</span> <span class="ifm">${member.level}</span>
+					</li>
+					<li class="list-group-item ms-2">
+						<span>이름 :</span> <span class="ifm">${member.username}</span>
+					</li>
+					<li class="list-group-item ms-2">
+						<span>아이디 :</span> <span class="ifm">${member.userid}</span>
+					</li>
+					<li class="list-group-item ms-2">
+						<span>생일 :</span> <span class="ifm">${member.birthday}</span>
+					</li>
 				</ul>
 			</div>
 		</div>
 		<div class="card-body">
 			<h4 class="card-title m-1">회원 정보</h4>
 			<span style="margin-left: 3%; color: #b3ffb3; font-weight: 600;">
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-					fill="currentColor" class="bi bi-arrow-right-square-fill"
-					viewBox="0 0 16 16">
-  					<path
-						d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z" />
-				</svg> 정보 수정 및 로그아웃
+				<span style="color:red;font-weight:bold;font-size:21px;">▷</span> 정보 수정 및 페이지
 			</span>
 			<div class="col-12 m-1">
 				<div class="list-group" id="list-tab" role="tablist">
-					<a class="list-group-item list-group-item-action active"
-						id="list-home-list"
-						href="${pageContext.request.contextPath}/auth/modify?userid=${member.userid}"
-						role="tab" aria-controls="home">내정보 변경</a> <a
-						class="list-group-item list-group-item-action active"
-						id="list-profile-list"
-						href="${pageContext.request.contextPath}/auth/delete" role="tab"
-						aria-controls="profile">회원탈퇴</a> <a
-						class="list-group-item list-group-item-action active"
-						id="list-profile-list"
-						href="${pageContext.request.contextPath}/board/listAll?num=1"
-						class="btn btn-warning" role="tab" aria-controls="profile">게시글페이지</a>
+						<a href="${pageContext.request.contextPath}/auth/modify?userid=${member.userid}" class="list-group-item list-group-item-action active">
+							내정보 변경
+						</a>
+						<a href="${pageContext.request.contextPath}/auth/delete" class="list-group-item list-group-item-action active">
+							회원탈퇴
+						</a> 
+						<a href="${pageContext.request.contextPath}/board/listAll?num=1" class="list-group-item list-group-item-action active">
+							게시글페이지
+						</a>
+					<c:if test="${member.level eq 3}">
+						<a href="${pageContext.request.contextPath}/admin/admin" class="list-group-item list-group-item-action active">
+							관리자페이지
+						</a>
+					</c:if>
 				</div>
 			</div>
 		</div>
 	</c:if>
 </div>
 <div class="card-footer">
-	<h1 class="text-center"
-		style="border: 2px solid black; background: red;">&#60</h1>
+		<h3>기타</h3>
+		<div class="list-group" id="list-tab" role="tablist">
+						<a href="${pageContext.request.contextPath}/map/map" class="list-group-item list-group-item-action">
+							길찾기
+						</a>
+		</div>
+		<h1 class="text-center" style="border:2px solid black; background: red;">&#60</h1>
 </div>

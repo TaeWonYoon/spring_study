@@ -1,5 +1,7 @@
 package com.study.tw.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -45,5 +47,16 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public void delete(MemberVO vo) throws Exception {
 		session.delete(namespace+".delete", vo);
+	}
+	
+	// admin
+	@Override
+	public List<MemberVO> adminList() throws Exception {
+		return session.selectList(namespace+".adminList");
+	}
+	
+	@Override
+	public void adminModify(MemberVO vo) throws Exception {
+		session.update(namespace+".adminModify", vo);
 	}
 }

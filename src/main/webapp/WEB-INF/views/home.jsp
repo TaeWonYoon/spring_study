@@ -1,13 +1,12 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<html>
-<head>
-	<title>Home</title>
-</head>
-<body>
-	<div class="card">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/crawling.css">
+	<div class="card" style="width:1618px;">
 		<div class="m-5">
+			<h1 style="text-align:center;margin-left:-70px;margin-bottom:3%;">
+				<a href="${pageContext.request.contextPath}/" class="text_d blue">CMP</a>
+			</h1>
 			<div class="float-start">
 				<h3>내가 작성한 게시글</h3>
 				<c:if test="${member == null }">
@@ -109,6 +108,11 @@
 			</div>
 		</div>
 	</div>
+	
+	<div style="width:1618px;background:#e6f7ff;">
+		<%@ include file="./crawling/crawling.jsp" %>
+	</div>
+	
 <script>
 	$(document).ready(function() {
 		//자기글이 없을 경우 메세지
@@ -128,5 +132,3 @@
 	        }
 	    });
 </script>
-</body>
-</html>

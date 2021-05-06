@@ -168,4 +168,5 @@ public class BoardController {
 		service.commentDelete(commentBno);
 		res.sendRedirect("./read?bno="+bno+"&num="+num);
 	}
+	
 }

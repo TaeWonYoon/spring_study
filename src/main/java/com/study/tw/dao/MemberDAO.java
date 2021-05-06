@@ -1,5 +1,7 @@
 package com.study.tw.dao;
 
+import java.util.List;
+
 import com.study.tw.vo.MemberVO;
 
 public interface MemberDAO {
@@ -16,4 +18,8 @@ public interface MemberDAO {
 	
 	public void delete(MemberVO vo) throws Exception;
 	
+	//admin페이지
+	public List<MemberVO> adminList() throws Exception;
+	
+	public void adminModify(MemberVO vo) throws Exception;
 }
