@@ -6,12 +6,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="UserMapper">
 
 	<insert id="register">
-		insert into member (userid, userpass, username, email, birthday, level, tel)
-		values( #{userid}, #{userpass}, #{username}, #{email}, #{birthday}, 1, #{tel});
+		insert into member (userid, userpass, username, email, birthday, level, tel, img)
+		values( #{userid}, #{userpass}, #{username}, #{email}, #{birthday}, 1, #{tel}, #{img});
 	</insert>
 	
 	<select id="login" resultType="com.study.tw.vo.MemberVO">
-		select userid, userpass, username, level, birthday
+		select userid, userpass, username, level, birthday, img
 		from member
 		where userid = #{userid} 
 	</select>
@@ -29,14 +29,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 where userid = #{userid}
 	 </select>
 	 
+	 <!-- 회원정보수정  modifyPage imgUploadpage-->
 	 <update id="update">
 	 	update member set 
+ 		<if test="img != null">
+ 		img = #{img}
+ 		</if>
+	 	<if  test="img == null">
 	 	userpass = #{userpass}, tel = #{tel}
+	 	</if>
+	 	where userid = #{userid}
+	 </update>
+	 
+	 <!-- 회원정보수정 -->
+	 <update id="imgUpload">
+	 	update member set
+	 	img = #{img}
 	 	where userid = #{userid}
 	 </update>
 	 
 	 <delete id="delete">
-	 	delete from member where userid = #{userid} and userpass = #{userpass}
+	 	delete from member where userid = #{userid}
 	 </delete>
 	
 	<!-- 어드민 페이지 -->

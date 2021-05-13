@@ -1,10 +1,16 @@
 package com.study.tw;
 
+import java.io.PrintWriter;
 import java.text.DateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -40,16 +46,30 @@ public class HomeController {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		model.addAttribute("list",service.listAll(0, 5));
 		
-		//뉴스 api
+		//날씨 api
 		String URL = "https://weather.naver.com/rgn/cityWetrMain.nhn";
 		Document doc = Jsoup.connect(URL).get();
 		Elements weather = doc.select(".today_weather .current");
 		Elements chart_list = doc.select(".today_chart_list");
 		Elements summary = doc.select(".summary");
+		Elements summaryList = doc.select(".summary_list");
 		
+//		for(int i=0;i<summaryList.select("dt").size();i++) {
+//			model.addAttribute("comHeader"+i, summaryList.select("dt").get(i).text());
+//		}
+		
+		model.addAttribute("summaryList", summaryList);
 		model.addAttribute("weather", weather);
         model.addAttribute("summary", summary);
         model.addAttribute("chart_list", chart_list);
+        
+        //뉴스 api
+        String newsURL = "https://news.naver.com/";
+		Document newsDoc = Jsoup.connect(newsURL).get();
+		Elements comHeader = newsDoc.select(".hdline_article_tit");
+		for(int i=0;i<comHeader.select("div").size();i++) {
+			model.addAttribute("comHeader"+i, comHeader.select("div").get(i).text());
+		}
 		return "home.page";
 	}
 	

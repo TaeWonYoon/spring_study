@@ -26,19 +26,17 @@ public class NewsController {
 	public String startCrawl(Model model) throws IOException {
 		String URL = "https://news.naver.com/";
 		Document doc = Jsoup.connect(URL).get();
-		Elements comHeader = doc.select(".com_header");
-		Elements newsInfo = doc.select(".news_info_txt");
+		Elements comHeader = doc.select(".hdline_article_tit");
 		
-		//Elements time_list = doc.select("dl .time_list");
-		String[] str = comHeader.text().split("정치");
-		System.out.println(str[0]);
-		System.out.println("------------");
-		System.out.println(comHeader);
-			
-		model.addAttribute("comHeaderstr", str[0]);
-        model.addAttribute("comHeader", comHeader);
-        model.addAttribute("newsInfo", newsInfo);
-        
+		//model.addAttribute("comHeader", comHeader.text());
+		//String[] str = comHeader.text().split("정치");
+		//System.out.println(str[0]);
+		System.out.println(comHeader.select("div").size());
+		for(int i=0;i<comHeader.select("div").size();i++) {
+			System.out.println(comHeader.select("div").get(i).text());
+			System.out.println("-----------------------");
+			model.addAttribute("comHeader"+i, comHeader.select("div").get(i).text());
+		}
 
 		return "crawling/news";
 	}

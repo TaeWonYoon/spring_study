@@ -24,7 +24,6 @@
 		var userpass = $.trim($('#userpass').val());
 		var userpass2 = $.trim($('#userpass2').val());
 		$("#tel4").val($("#tel1").val() + $("#tel2").val() + $("#tel3").val());
-		
 		if(!userpass || userpass.length < 5 || userpass != userpass2) {
 			alert('비밀번호를 확인해주세요');
 			return false;

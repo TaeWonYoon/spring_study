@@ -7,10 +7,21 @@
   	-webkit-appearance: none;
 }
 </style>
+<c:if test="${member != null}">
+	<script> alert('로그아웃후 이용해주세요'); location.href = '${pageContext.request.contextPath}/'</script>
+</c:if>
 <div class="m-5">
 	<form method="post" id="rform" action="./register.do" class="row g-4"
-		id="registerform">
+		id="registerform" enctype="multipart/form-data">
 		<h1>회원가입 페이지</h1>
+		<div class="input-group">
+			<div class="col-lg-1 ">
+			  <label for="formFileLg" class="form-label">프로필 사진</label>
+			</div>
+			<div class="col-lg-4 ">
+			  <input class="form-control" type="file" id="formFileLg" name="imgUpload" placeholder="파일 선택" accept="image/gif,image/jpeg,image/png">
+			</div>
+		</div>
 		<div class="input-group">
 			<div class="col-lg-1 ">
 				<label for="username" class="form-label">이름</label>

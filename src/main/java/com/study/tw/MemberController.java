@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.study.tw.lib.Login;
+import com.study.tw.lib.ScriptUtils;
+import com.study.tw.lib.Upload;
 import com.study.tw.service.MemberService;
 import com.study.tw.vo.MemberVO;
 
@@ -34,23 +37,18 @@ public class MemberController {
 	@RequestMapping(value = "/register")
 	public String getRegister(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		
-		HttpSession session = request.getSession();
-		MemberVO member = (MemberVO) session.getAttribute("member");
-		String url;
-		if(member != null) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('로그인 중입니다. 로그아웃 후 입력해주세요');</script>");
-			out.flush();
-			url = "redirect:/";
-		} else {
-			url = "/auth/register.pages";
-		}
-		return url;
+		return "/auth/register.pages";
 	}
 	
 	@RequestMapping(value = "/register.do", method = RequestMethod.POST)
-	public String postRegister(MemberVO vo) throws Exception {
+	public String postRegister(MultipartFile imgUpload,HttpServletRequest request, MemberVO vo) throws Exception {
+		
+		//업로드
+		Upload ul = new Upload();
+		if(imgUpload.isEmpty() == false) {
+		vo.setImg("upload/"+ul.saveFile(imgUpload, request,"/upload"));
+		}
+		
 		String inputPass = vo.getUserpass();
 		String userpass = pwdEncoder.encode(inputPass);
 		vo.setUserpass(userpass);
@@ -64,23 +62,27 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public String loginDo(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr,HttpServletResponse res) throws Exception{
+	public void loginDo(MemberVO vo, HttpServletRequest req,HttpServletResponse res) throws Exception{
 		HttpSession session = req.getSession();
 		//디비 암호화 비밀번호 값과 vo비밀번호 값이 같은지 비교
 		MemberVO login = service.login(vo);
-		boolean pwdMacth = pwdEncoder.matches(vo.getUserpass(), login.getUserpass());
+		System.out.println(login);
+		boolean pwdMacth = false;
 		
-		String redirect = ""; 
-		if(login == null || !(pwdMacth)) {
-			//rttr.addFlashAttribute("msg", false);
-			Login loginDo = new Login();
-			loginDo.LoginDo(res);
-			redirect = "redirect:/auth/login";
+		if(login != null) {
+			pwdMacth = pwdEncoder.matches(vo.getUserpass(), login.getUserpass());
+			if(pwdMacth) {
+				System.out.println(pwdMacth);
+				session.setAttribute("member", login);
+				ScriptUtils.location(res, "");
+			} else {
+				ScriptUtils.alertHistory(res, "비밀번호가 틀립니다.");
+				session.setAttribute("member", null);
+			}
 		} else {
-			session.setAttribute("member", login);
-			redirect = "redirect:/";
+			ScriptUtils.alertHistory(res, "아이디가 틀립니다.");
+			session.setAttribute("member", null);
 		}
-		return redirect;
 	}
 	
 	@RequestMapping(value = "/logout")
@@ -103,24 +105,52 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/modify.do")
-	public String ModifyDo(MemberVO vo, HttpSession session) throws Exception {
+	public String ModifyDo(MemberVO vo, HttpSession session,MultipartFile imgUpload,HttpServletRequest request) throws Exception {
+
+		//업로드
+		Upload ul = new Upload();
+			if(imgUpload.isEmpty() == false) {
+			vo.setImg("upload/"+ul.saveFile(imgUpload, request,"upload"));
+		}
+		if(vo.getUserpass() != null) {		
 		String inputPass = vo.getUserpass();
 		String userpass = pwdEncoder.encode(inputPass);
 		vo.setUserpass(userpass);
+		}
 		service.modifyDo(vo);
 		session.invalidate();
 		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/delete")
-	public String delete() throws Exception {
+	public String delete() {
 		return "/auth/delete.pages";
 	}
 	
+	@RequestMapping(value = "/imgUpload")
+	public String imgUpload() {
+		
+		return "/auth/imgUpload.page";
+	}
+	
+	/*
 	@RequestMapping(value = "/delete.do")
-	public String deleteDo(MemberVO vo, HttpSession session) throws Exception {
+	public String deleteDo(MemberVO vo, HttpSession session,HttpServletResponse res) throws Exception {
+		MemberVO login = service.login(vo);
+		String url;
+		boolean pwdMacth = pwdEncoder.matches(vo.getUserpass(), login.getUserpass());
+		if(pwdMacth) {
 			service.delete(vo);
 			session.invalidate();
-		return "redirect:/";
+			url = "redirect:/";
+		} else {
+			System.out.println("삭제안됨");
+			url = "redirect:/auth/delete";
+		}
+			
+		return url;
 	}
+	*/
+	
+	
 }

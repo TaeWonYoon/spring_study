@@ -18,6 +18,7 @@ public interface MemberDAO {
 	
 	public void delete(MemberVO vo) throws Exception;
 	
+	public void upload(MemberVO vo) throws Exception;
 	//admin페이지
 	public List<MemberVO> adminList() throws Exception;
 	

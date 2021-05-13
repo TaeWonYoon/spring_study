@@ -10,9 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.study.tw.lib.Login;
+import com.study.tw.lib.ScriptUtils;
+import com.study.tw.lib.Upload;
 import com.study.tw.service.BoardService;
 import com.study.tw.vo.BoardVO;
 import com.study.tw.vo.CommentVO;
@@ -27,8 +30,15 @@ public class BoardController {
 	
 	
 	@RequestMapping(value = "/write.do", method = RequestMethod.POST)
-	public String writeDo(BoardVO vo) throws Exception {
+	public String writeDo(BoardVO vo,MultipartFile imgUpload,HttpServletRequest request) throws Exception {
+		//업로드
+		String imgUrl = "boardUpload/";
+		Upload ul = new Upload();
+			if(imgUpload.isEmpty() == false) {
+			vo.setImg(imgUrl+ul.saveFile(imgUpload, request,imgUrl));
+		}
 		
+		System.out.println(vo.getImg());
 		service.create(vo);
 		return "redirect:/board/listAll?num=1";
 	}
@@ -38,8 +48,7 @@ public class BoardController {
 		//로그인시에만 페이징처리
 		session = req.getSession();
 		if(session.getAttribute("member") == null) {
-			Login login = new Login();
-			login.LoginAuth(res);
+			ScriptUtils.alertLogout(res, "로그인후 이용바랍니다.");
 		} 
 		
 		return "board/write.pages";
@@ -51,8 +60,7 @@ public class BoardController {
 		session = req.getSession();
 		
 		if(session.getAttribute("member") == null) {
-			Login login = new Login();
-			login.LoginAuth(res);
+			ScriptUtils.alertLogout(res, "로그인후 이용바랍니다.");
 		} 
 		//로그인시에만 페이징처리
 		if(num == 0) {
@@ -78,8 +86,7 @@ public class BoardController {
 			)throws Exception {
 		session = req.getSession();
 		if(session.getAttribute("member") == null) {
-			Login login = new Login();
-			login.LoginAuth(res);
+			ScriptUtils.alertHistory(res, "로그인후 이용바랍니다.");
 		} 
 		String title="";
 		String writer ="";
@@ -115,8 +122,7 @@ public class BoardController {
 		
 		session = req.getSession();
 		if(session.getAttribute("member") == null) {
-			Login login = new Login();
-			login.LoginAuth(res);
+			ScriptUtils.alertLogout(res, "로그인후 이용바랍니다.");
 		}
 		
 		model.addAttribute("num", num);
@@ -127,17 +133,29 @@ public class BoardController {
 	  }
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET) 
-	public String modify(@RequestParam("bno")int bno,BoardVO board, Model model) throws Exception{
-		
+	public String modify(@RequestParam("bno")int bno,BoardVO board, Model model,
+			HttpServletRequest req, HttpSession session,HttpServletResponse res) throws Exception{
+		session = req.getSession();
+		if(session.getAttribute("member") == null) {
+			ScriptUtils.alertLogout(res, "로그인후 이용바랍니다.");
+		}
 		model.addAttribute("board_vo",service.read(bno));	 
 		
 		return "/board/modify.page";
 	}
 	
 	@RequestMapping(value = "/modify.do", method = RequestMethod.POST) 
-	public String modifyDo(BoardVO vo) throws Exception{
+	public String modifyDo(BoardVO vo,MultipartFile imgUpload,HttpServletRequest request) throws Exception{
+		
+		//업로드
+		String imgUrl = "boardUpload/";
+		Upload ul = new Upload();
+			if(imgUpload.isEmpty() == false) {
+			vo.setImg(imgUrl+ul.saveFile(imgUpload, request,imgUrl));
+		}
+		
 		service.modify(vo);
-		return "redirect:/board/read?bno="+vo.getBno();
+		return "redirect:/board/read?bno="+vo.getBno()+"&num=1";
 	}
 	
 	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)

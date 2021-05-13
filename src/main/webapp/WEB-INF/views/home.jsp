@@ -15,8 +15,8 @@
 				<c:if test="${member != null}">
 				<table class="table table-hover table-bordered" style="width:700px;">
 					<colgroup>
-							<col width="8%">
-							<col width="49%">
+							<col width="10%">
+							<col width="47%">
 							<col width="10%">
 							<col width="23%">
 							<col width="10%">
@@ -53,18 +53,18 @@
 					</c:if>
 				</c:forEach>
 				</table>
-				</c:if>
 				<div id="myBoard" style="display:none;">
 					<h3 style="color:red;">작성된 글이 없습니다. 글을 작성해주세요</h3>
 				</div>
+				</c:if>
 			</div>
 			<div class="" style="float:right;">
 				<h3>최근 게시글</h3>
 					<div style="float:left">
 					<table class="table table-hover table-bordered" style="width:700px;">
 						<colgroup>
-								<col width="8%">
-								<col width="49%">
+								<col width="10%">
+								<col width="47%">
 								<col width="10%">
 								<col width="23%">
 								<col width="10%">

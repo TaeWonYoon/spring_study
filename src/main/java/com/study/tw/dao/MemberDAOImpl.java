@@ -41,9 +41,15 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Override
 	public void update(MemberVO vo) throws Exception {
-		session.update(namespace+".update",vo);
+		session.update(namespace+".update", vo);
 	}
 	
+	@Override
+	public void upload(MemberVO vo) throws Exception {
+		session.update(namespace+".imgUpload", vo);
+		System.out.println(vo.getImg());
+		
+	}
 	@Override
 	public void delete(MemberVO vo) throws Exception {
 		session.delete(namespace+".delete", vo);

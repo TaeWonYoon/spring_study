@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Login {
 	
 	//HttpServletResponse res;
-	public void LoginAuth(HttpServletResponse res)  {
-		
+	public static void loginAuth(HttpServletResponse res)  {
 			try {
 				res.setContentType("text/html;charset=UTF-8");
 		        res.setCharacterEncoding("UTF-8");
@@ -17,7 +16,6 @@ public class Login {
 				out = res.getWriter();
 				out.println("<script>");
 				out.println("alert('로그인후 이용해주세요')");
-				out.print("location.href='../auth/login'");
 				out.println("</script>");
 				out.close();
 			} catch (IOException e) {
@@ -25,7 +23,7 @@ public class Login {
 			}
 	}
 	
-	public void LoginDo(HttpServletResponse res){
+	public static void loginDo(HttpServletResponse res,String text){
 		
 		try {
 			res.setContentType("text/html;charset=UTF-8");
@@ -33,14 +31,12 @@ public class Login {
 		    PrintWriter out;
 		    out = res.getWriter();
 			out.print("<script>");
-			out.print("alert('아이디 또는 패스워드가 틀립니다!');");
-			out.print("location.href='./login'");
+			out.print("alert('" + text + "');");
 			out.print("</script>");
 			out.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 }

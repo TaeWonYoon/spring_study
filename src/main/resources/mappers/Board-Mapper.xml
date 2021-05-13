@@ -6,8 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="BoardMapper">
 
 	<insert id="create">
-		insert into board (title, content, user_id, viewcnt)
-		values(#{title}, #{content}, #{user_id}, #{viewcnt})
+		insert into board (title, content, user_id, viewcnt, img)
+		values(#{title}, #{content}, #{user_id}, #{viewcnt}, #{img})
 	</insert>
  
 	<select id="listAll" parameterType="hashMap" resultType="com.study.tw.vo.BoardVO">
@@ -56,14 +56,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	
  	 <select id="read" resultType="com.study.tw.vo.BoardVO">
 	 select 
-	   bno, title, content, user_id, regdate, viewcnt 
+	   bno, title, content, user_id, regdate, viewcnt, img
 	 from 
 	   board 
 	 where bno = #{bno}
 	 </select>
 
 	<update id="update">
- 	update board set title = #{title}, content = #{content} 
+ 	update board set 
+ 	title = #{title}, content = #{content}
+ 	<if test="img !=null">
+ 	, img = #{img}
+ 	</if>
  	where bno = #{bno}
  	</update>
  	
@@ -97,4 +101,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="commentDelete">
 		delete from comment where commentBno = #{commentBno}
 	</delete>
+	
 </mapper>

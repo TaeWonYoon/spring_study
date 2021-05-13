@@ -10,7 +10,7 @@
 <div class="m-5">
 	<form method="post" action="./delete.do" class="row g-4"
 		id="deleteForm">
-		<h1>회원수정 페이지</h1>
+		<h1>회원탈퇴 페이지</h1>
 		<div class="input-group">
 			<div class="col-lg-1 ">
 				<label for="username" class="form-label">이름</label>
@@ -39,6 +39,8 @@
 					<span style="color:red;">패스워드는 최소 6글자 이상입니다.</span>
 				<input type="hidden" class="form-control"
 					maxlength="12" id="userpassChk" value="${member.userpass}">
+				<input type="hidden" class="form-control"
+					maxlength="12" id="userid" value="${member.userid}">
 			</div>
 		</div>
 		
@@ -54,7 +56,7 @@
 		</div>
 		
 		<div style="margin-left: 240px;margin-top:40px;">
-			<button type="button" id="btnForm" class="btn btn-success btn-lg">회원탈퇴 변경</button>
+			<button type="button" id="btnForm" class="btn btn-success btn-lg">회원탈퇴</button>
 		</div>
 	</form>
 </div>

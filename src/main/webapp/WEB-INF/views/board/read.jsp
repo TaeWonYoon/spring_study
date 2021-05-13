@@ -4,17 +4,26 @@
 		<div class="m-5">
 			<div class="card">
 				<div class="card-body">
-					<h1>Read Page</h1>
+					<h1>글 내용</h1>
 					<form id="readDelete">
 						<div class="form-group m-3">
 							<h5>Id</h5> <input name ="title" class="form-control" value ="${board_vo.user_id}" readonly="readonly"/>
 						</div>
 						<div class="form-group m-3">
-							<h5>Title</h5> <input name="title" class="form-control" value="${board_vo.title}">
+							<h5>Title</h5> <input name="title" class="form-control" value="${board_vo.title}" readonly>
 						</div>
 						<div class="form-group m-3">
 							<h5>Cotent</h5> 
-							<textarea id="lgth" maxlength="201" name="content" class="form-control" rows="10" cols="60"  readonly>${board_vo.content}</textarea>
+							<div style="border: 1px solid #ced4da;border-radius: 4px;width:1134px;height:400px;background:#e9ecef;">
+								<c:if test="${board_vo.img != null }">
+									<div style="text-align:center; margin-top:15px;">
+									<img src="${pageContext.request.contextPath}/${board_vo.img}" width="300" height="200"/>
+									</div>
+								</c:if>
+								<p style="font-size: 21px;">${board_vo.content}</p>
+							</div>
+							
+							<input type="hidden" id="lgth" maxlength="201" name="content" value="${board_vo.content}" readonly/>
 						</div>
 						<input type="hidden" name="viewcnt" value="0" />
 						<div class="form-group m-2">
@@ -50,7 +59,7 @@
                 </div>
             </div>
         </div>
-        
+   </div>    
 			<br>
 		<%@ include file="./comment.jsp" %>
 		</div>

@@ -13,7 +13,7 @@
 			<form name='homeForm' method="post" action="${pageContext.request.contextPath}/auth/login.do">
 				<c:if test="${member == null}">
 					<h2 class="form-signin-heading">Please sign in</h2>
-					<label for="userid" class="sr-only">Email address</label>
+					<label for="userid" class="sr-only">Id</label>
 						<div class="mb-3">
 							<input type="text" name="userid" id="userid" class="form-control form-control-lg"
 								placeholder="Email address">

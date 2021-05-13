@@ -27,7 +27,7 @@
 					</div>
 				</div>
 				<div class="card-body">
-					<table class="table table-hover" height="450">
+					<table class="table table-hover">
 						<thead class="thead-dark">
 							<tr>
 								<td><p>번호</p></td>
@@ -42,25 +42,18 @@
 
 						<tbody>
 						<c:forEach items="${admin}" var="adminList" varStatus="status">
-							<c:if test="${member.userid != adminList.userid}">
 							<form id="adMinmodify" method="post" action="./admin.do" >
+							<c:if test="${member.userid != adminList.userid}">
 							<tr>			
 								<td>${status.count}</td>
 								<td>
 									<select name="level" style="width:45px;">
 										<c:choose>
-											<c:when test="${adminList.level eq 3}">
-												<option value="3" selected>3</option>
-												<option value="2" >2</option>
-												<option value="1">1</option>
-											</c:when>
 											<c:when test="${adminList.level eq 2}">
-												<option value="3">3</option>
 												<option value="2" selected>2</option>
 												<option value="1">1</option>
 											</c:when>
 											<c:otherwise>
-												<option value="3">3</option>
 												<option value="2">2</option>
 												<option value="1" selected>1</option>
 											</c:otherwise>
@@ -76,8 +69,8 @@
 									<button type="submit" class="btn btn-warning" style="margin-left: -13px;">수정</button>
 								</td>
 							</tr>
-						</form>
 						</c:if>
+						</form>
 					</c:forEach>
 						</tbody>
 					</table>

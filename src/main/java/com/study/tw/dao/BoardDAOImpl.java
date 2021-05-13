@@ -98,4 +98,5 @@ public class BoardDAOImpl implements BoardDAO{
 		// TODO Auto-generated method stub
 		session.delete(namespace+".commentDelete", commentBno);
 	}
+	
 }

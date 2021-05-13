@@ -21,3 +21,14 @@
 .before_slash {
 	margin-left: 15px;
 }
+.n_fsize{
+	font-size:24px;
+}
+.term, .desc {
+	float:left;
+	font-size: 20px;
+	
+}
+.desc {
+	margin-right: 4%;
+}

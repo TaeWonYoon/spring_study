@@ -17,7 +17,8 @@
 	<!--   리소스 말고 views CSS사용
 	<resources mapping="/resources/**" location="/resources/" />
 	-->
-	
+	<resources mapping="/boardUpload/**" location="file:///C:/eclipse-total/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/study/boardUpload/" />
+	<resources mapping="/upload/**" location="file:///C:/eclipse-total/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/study/upload/" />
 	<resources mapping="/css/**" location="/WEB-INF/views/css/" />
 	<resources mapping="/img/**" location="/WEB-INF/views/img/" />
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
@@ -40,5 +41,5 @@
             </beans:list>
         </beans:property>
     </beans:bean>
-	
+    
 </beans:beans>

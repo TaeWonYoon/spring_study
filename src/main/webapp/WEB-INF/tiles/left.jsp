@@ -17,7 +17,7 @@
 			<div>
 				<ul class="list-group">
 					<li class="list-group-item ms-2" id="profile_img">
-						<img src="${pageContext.request.contextPath}/img/dog.png" width="80%"alt="이미지no">
+						<img src="${pageContext.request.contextPath}/upload/dog.png" width="80%"alt="이미지nos">
 					</li>
 				</ul>
 			</div>
@@ -41,9 +41,19 @@
 		<div class="card-body">
 			<div>
 				<ul class="list-group">
+				<c:if test="${member.img != null}">
 					<li class="list-group-item ms-2" id="profile_img">
-						<img src="${pageContext.request.contextPath}/img/dog.png" width="80%" alt="이미지no">
+						<img src="${pageContext.request.contextPath}/${member.img}" width="210" height="150" alt="이미지nos">
 					</li>
+				</c:if>
+				<c:if test="${member.img == null}">
+					<li class="list-group-item ms-2" id="profile_img">
+						<div style="width:210px; height:150px;">
+							<h2>이미지를 업로드 해주세요.</h2>
+							내정보 변경을 이용해주세요.
+						</div>
+					</li>
+				</c:if>
 					<li class="list-group-item ms-2">
 						<span>등급 :</span> <span class="ifm">${member.level}</span>
 					</li>
@@ -66,6 +76,9 @@
 			</span>
 			<div class="col-12 m-1">
 				<div class="list-group" id="list-tab" role="tablist">
+						<a href="${pageContext.request.contextPath}/auth/imgUpload" class="list-group-item list-group-item-action active">
+							프로필변경
+						</a>
 						<a href="${pageContext.request.contextPath}/auth/modify?userid=${member.userid}" class="list-group-item list-group-item-action active">
 							내정보 변경
 						</a>

@@ -10,12 +10,21 @@ public class BoardVO {
 	private String user_id;
 	private Date regdate;
 	private int viewcnt;
-	
+	private String img;
 	
 	public BoardVO() {
 	}
 	
 	
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+
 	public String getContent() {
 		return content;
 	}

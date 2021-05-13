@@ -22,8 +22,8 @@
 					</form>
 					</div>
 				</div>
-				<div class="card-body">
-					<table class="table table-hover" height="450">
+				<div class="card-body" >
+					<table class="table table-hover">
 						<thead class="thead-dark">
 							<tr>
 								<td>
@@ -45,7 +45,7 @@
 						</thead>
 
 						<c:forEach items="${list}" var="boardVO" varStatus="status">
-							<tr>
+							<tr style="line-height:50px;">
 								<!--  <td>${status.count}</td> -->
 								<td>${boardVO.bno}</td>
 								<td><a href='./read?bno=${boardVO.bno}&num=${select}'>${boardVO.title}</a></td>

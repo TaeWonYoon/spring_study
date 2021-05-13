@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.study.tw.service.MemberService;
 import com.study.tw.vo.MemberVO;
 
-@Controller()
+@Controller
 @RequestMapping(value = "/admin")
 public class AdminController {
 

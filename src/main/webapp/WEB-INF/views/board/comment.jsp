@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-			<div class="card" >
+		<div class="container" style="margin-top:-100px;">
+			<div class="card m-5" >
 				<div class="card-body">
 					<table class="table">
 						<colgroup>
@@ -61,6 +62,7 @@
 					</form>
 				</div>
 			</div>
+		</div>
 	<script>
 		function commentDelete(commentBno){
 			var msg = confirm("댓글을 삭제합니다");

@@ -4,7 +4,7 @@
     
 <div class="m-5">
 	<form method="post" id="mform" action="./modify.do" class="row g-4"
-		id="registerform">
+		id="registerform" enctype="multipart/form-data">
 		<h1>회원수정 페이지</h1>
 		<div class="input-group">
 			<div class="col-lg-1 ">
@@ -40,7 +40,17 @@
 				<input type="text" maxlength="15" class="form-control" value="${infor.birthday}" readonly>
 			</div>
 		</div>
-
+		<!--  
+		
+		<div class="input-group">
+			<div class="col-lg-1 ">
+			  <label for="formFileLg" class="form-label">프로필 사진</label>
+			</div>
+			<div class="col-lg-4 ">
+			  <input class="form-control" type="file" id="formFileLg" name="imgUpload" placeholder="파일 선택" accept="image/gif,image/jpeg,image/png">
+			</div>
+		</div>
+		-->
 		<div class="input-group">
 			<div class="col-lg-1 ">
 				<label for="userpass" class="form-label">비밀번호</label>

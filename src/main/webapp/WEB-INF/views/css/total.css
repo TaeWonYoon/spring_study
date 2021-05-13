@@ -2,6 +2,12 @@
 .blue {
 	color: #1aa3ff;
 }
+.black {
+	color: #4d4d4d;;
+}
+.font_b {
+	font-weight: 800;
+}
 .text_d {
 	text-decoration: none;
 }

@@ -16,6 +16,8 @@ public interface MemberService {
 	
 	public void modifyDo(MemberVO vo) throws Exception;
 	
+	public void upload(MemberVO vo) throws Exception;
+	
 	public void delete(MemberVO vo) throws Exception;
 	
 	public List<MemberVO> adminList() throws Exception;

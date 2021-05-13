@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>제목</title>
+    <title>CMP</title>
     <style>
         #header{
             width: 100%;

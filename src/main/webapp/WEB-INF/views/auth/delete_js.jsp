@@ -18,20 +18,14 @@
 		var userpass2 = $.trim($('#userpass2').val());
 		var userpass = $.trim($('#userpass').val());
 		
-		if(userpass == '' || userpass2 == ''){
+		if(userpass.length < 6 || userpass2.length < 6){
 			alert('비밀번호를 확인해주세요');
 			$("#passChk").html("비밀번호가 <b>확인해주세요.</b>");
-		} else if(userpass == userpass2){
-			if(userpass == $('#userpassChk').val()) {
-				if(confirm('정말 삭제하시겠습니까? 복구가 불가능합니다.')) {
-					alert('삭제되었습니다.')
-					$('#deleteForm').submit();
-				}
-		   }else {
-				alert('현재 비밀번호와 계정 비밀번호가 다릅니다.');
-		  }
+		} else if(userpass == userpass2 && userpass.length > 5 && userpass2.length > 5){
+			if(confirm('정말 삭제하시겠습니까? 복구가 불가능합니다.')) {
+				$('#deleteForm').submit();
+			}
 		}
-		
 	})
 	
 	

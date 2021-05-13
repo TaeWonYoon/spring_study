@@ -12,10 +12,18 @@ public class MemberVO {
 	private String birthday;
 	private int level;
 	private String tel;
-	
+	private String img;
 	public MemberVO() {
 	}
 	
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 	public String getBirthday() {
 		return birthday;
 	}

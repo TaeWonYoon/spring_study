@@ -9,4 +9,30 @@ function textCount() {
     }
     $('#TextCount').text('(' + $('#lgth').val().length + '/' + ((maxCount)-1) + '자)');
 }
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        console.log(input.files);
+        
+    var reader = new FileReader();
+    reader.onload = function (e) {
+    	$('#blah').attr('src', e.target.result);
+	   }
+reader.readAsDataURL(input.files[0]);
+	}
+}
+$("#btnSub").click(function() {
+	
+	var title = $.trim($('#title').val());
+	var lgth =$.trim($('#lgth').val());
+	if(!title) {
+		alert("제목을 입력해주세요");
+		return false;
+	}
+	if(!lgth) {
+		alert("내용을 입력해주세요");
+		return false;
+	}
+	
+	$("#write").submit();
+})
 </script>
