@@ -17,7 +17,7 @@
 			<div>
 				<ul class="list-group">
 					<li class="list-group-item ms-2" id="profile_img">
-						<img src="${pageContext.request.contextPath}/upload/dog.png" width="80%"alt="이미지nos">
+						<img src="${pageContext.request.contextPath}/userImg/dog.png" width="80%"alt="이미지nos">
 					</li>
 				</ul>
 			</div>

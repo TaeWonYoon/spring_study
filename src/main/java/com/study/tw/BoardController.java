@@ -32,7 +32,7 @@ public class BoardController {
 	@RequestMapping(value = "/write.do", method = RequestMethod.POST)
 	public String writeDo(BoardVO vo,MultipartFile imgUpload,HttpServletRequest request) throws Exception {
 		//업로드
-		String imgUrl = "boardUpload/";
+		String imgUrl = "boardImg/";
 		Upload ul = new Upload();
 			if(imgUpload.isEmpty() == false) {
 			vo.setImg(imgUrl+ul.saveFile(imgUpload, request,imgUrl));
@@ -148,7 +148,7 @@ public class BoardController {
 	public String modifyDo(BoardVO vo,MultipartFile imgUpload,HttpServletRequest request) throws Exception{
 		
 		//업로드
-		String imgUrl = "boardUpload/";
+		String imgUrl = "boardImg/";
 		Upload ul = new Upload();
 			if(imgUpload.isEmpty() == false) {
 			vo.setImg(imgUrl+ul.saveFile(imgUpload, request,imgUrl));

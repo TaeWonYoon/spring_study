@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.study.tw.lib.Login;
 import com.study.tw.lib.ScriptUtils;
 import com.study.tw.lib.Upload;
 import com.study.tw.service.MemberService;
@@ -46,7 +44,7 @@ public class MemberController {
 		//업로드
 		Upload ul = new Upload();
 		if(imgUpload.isEmpty() == false) {
-		vo.setImg("upload/"+ul.saveFile(imgUpload, request,"/upload"));
+		vo.setImg("userImg/"+ul.saveFile(imgUpload, request,"userImg/"));
 		}
 		
 		String inputPass = vo.getUserpass();
@@ -107,16 +105,20 @@ public class MemberController {
 	@RequestMapping(value = "/modify.do")
 	public String ModifyDo(MemberVO vo, HttpSession session,MultipartFile imgUpload,HttpServletRequest request) throws Exception {
 
-		//업로드
-		Upload ul = new Upload();
+		//업로드 널이 아닐때
+		if(imgUpload != null) {
+			Upload ul = new Upload();
 			if(imgUpload.isEmpty() == false) {
-			vo.setImg("upload/"+ul.saveFile(imgUpload, request,"upload"));
+			vo.setImg("userImg/"+ul.saveFile(imgUpload, request,"userImg/"));
+			}
 		}
+			
 		if(vo.getUserpass() != null) {		
 		String inputPass = vo.getUserpass();
 		String userpass = pwdEncoder.encode(inputPass);
 		vo.setUserpass(userpass);
 		}
+		
 		service.modifyDo(vo);
 		session.invalidate();
 		return "redirect:/";

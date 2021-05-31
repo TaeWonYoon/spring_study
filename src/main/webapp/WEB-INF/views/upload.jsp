@@ -5,5 +5,6 @@
 <form action="./upload.do" method="post" enctype="multipart/form-data">
     <input type="file" name="files" placeholder="파일 선택" accept="image/gif,image/jpeg,image/png"/><br/>
     <input type="submit" value="업로드">
+    <br>
 </form>
 <br>

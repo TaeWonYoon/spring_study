@@ -11,7 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class Upload {
 
 	public String saveFile(MultipartFile file, HttpServletRequest request, String url){
-		String path = request.getSession().getServletContext().getRealPath(url);
+		//톰캣 tmp 패스잡기
+		//String path = request.getSession().getServletContext().getRealPath(url);
+		String path = "D:/springUpload/"+url;
 		// 파일 이름 변경
 	    UUID uuid = UUID.randomUUID();
 	    String saveName = uuid + "_" + file.getOriginalFilename();
